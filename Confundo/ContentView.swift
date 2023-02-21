@@ -35,6 +35,8 @@ struct ContentView: View {
                         .scaledToFit()
                         .frame(maxWidth: geometry.size.width * 0.8)
                         .shadow(radius: 10)
+                        .saturation(blurAmount)
+                        .blur(radius: (1 - blurAmount) * 20)
                         .padding()
                     
                     Text("Guess the image as soon as you can!")
@@ -43,8 +45,11 @@ struct ContentView: View {
                     
                     TextField("Enter your guess here", text: $userGuess)
                         .textFieldStyle(.roundedBorder)
+                        .shadow(radius: 10)
                     
                     Spacer()
+                    
+                    Slider(value: $blurAmount)
                     
                     HStack {
                         Text("Time remaining:")
