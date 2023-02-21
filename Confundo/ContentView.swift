@@ -15,9 +15,14 @@ struct ContentView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                Text("Confundo!")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
+                HStack {
+                    Image(systemName: "eyes")
+                        .font(.largeTitle)
+                    Text("Confundo!")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                }
+                .padding(.bottom)
                 
                 Image(imageSet.randomElement() ?? "dog")
                     .resizable()
