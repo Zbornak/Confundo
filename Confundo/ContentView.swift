@@ -32,6 +32,18 @@ struct ContentView: View {
                 
                 TextField("Enter your guess here", text: $userGuess)
                     .textFieldStyle(.roundedBorder)
+                
+                Spacer()
+                
+                HStack {
+                    Text("Time remaining:")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                    Spacer()
+                    Text("Score:")
+                }
+                .font(.title3)
+                .fontWeight(.bold)
             }
             .padding()
         }
