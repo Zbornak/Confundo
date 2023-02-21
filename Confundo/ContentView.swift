@@ -36,7 +36,7 @@ struct ContentView: View {
                         .frame(maxWidth: geometry.size.width * 0.8)
                         .shadow(radius: 10)
                         .saturation(blurAmount)
-                        .blur(radius: (1 - blurAmount) * 20)
+                        .blur(radius: (1 - blurAmount) * 40)
                         .padding()
                     
                     Text("Guess the image as soon as you can!")
