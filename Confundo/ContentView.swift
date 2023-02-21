@@ -46,6 +46,7 @@ struct ContentView: View {
                     TextField("Enter your guess here", text: $userGuess)
                         .textFieldStyle(.roundedBorder)
                         .shadow(radius: 10)
+                        .opacity(0.7)
                     
                     Spacer()
                     
