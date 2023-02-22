@@ -16,19 +16,22 @@ struct ContentView: View {
     
     @State private var userScore = 0
     
-    @State private var countdown = 60
+    @State private var timeRemaining = 60
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     @State private var averageTime = 0.0
     
     @State private var countdownAnimationAmount = 1.0
     
     var countdownButtonColor: Color {
-        if countdown >= 60 {
+        if timeRemaining >= 60 {
             return .green
-        } else if countdown < 30 {
+        } else if timeRemaining < 40 {
             return .yellow
-        } else {
+        } else if timeRemaining < 20 {
             return .red
+        } else {
+            return .green
         }
     }
     
@@ -68,7 +71,7 @@ struct ContentView: View {
                     
                     Spacer()
                     
-                    Text("\(countdown)")
+                    Text("\(timeRemaining)")
                         
                         .fontWeight(.bold)
                         .font(.system(size: 40))
@@ -86,6 +89,11 @@ struct ContentView: View {
                             )
                         .onAppear {
                             countdownAnimationAmount = 2.0
+                        }
+                        .onReceive(timer) { _ in
+                            if timeRemaining > 0 {
+                                timeRemaining -= 1
+                            }
                         }
                     
                     Spacer()
