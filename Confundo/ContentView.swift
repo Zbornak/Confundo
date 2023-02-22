@@ -29,7 +29,7 @@ struct ContentView: View {
     var countdownButtonColor: Color {
         if timeRemaining >= 60 {
             return .green
-        } else if timeRemaining <= 40 {
+        } else if timeRemaining <= 40 && timeRemaining > 20 {
             return .yellow
         } else if timeRemaining <= 20 {
             return .red
@@ -75,10 +75,10 @@ struct ContentView: View {
                     Spacer()
                     
                     Text("\(timeRemaining)")
-                        
                         .fontWeight(.bold)
                         .font(.system(size: 40))
                         .padding()
+                        .frame(maxWidth: geometry.size.width * 0.8)
                         .buttonStyle(.bordered)
                         .background(countdownButtonColor)
                         .clipShape(Circle())
