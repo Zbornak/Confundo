@@ -106,6 +106,8 @@ struct ContentView: View {
                             .onReceive(timer) { _ in
                                 if timeRemaining > 0 {
                                 timeRemaining -= 1
+                                } else {
+                                    showingTimeoutAlert = true
                             }
                         }
                     }
@@ -124,7 +126,9 @@ struct ContentView: View {
             }
         }
         .alert("Time's up!", isPresented: $showingTimeoutAlert) {
-            Button("OK") { }
+            Button("Continue") { }
+        } message: {
+            Text("It was a ...animal name here...")
         }
     }
 }
