@@ -107,7 +107,7 @@ struct ContentView: View {
                     Slider(value: $blurAmount)
                     
                     HStack {
-                        Text("Average Time:")
+                        Text("Average Time: \(averageTime)")
                             .font(.title3)
                             .fontWeight(.bold)
                         Spacer()
