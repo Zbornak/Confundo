@@ -54,6 +54,9 @@ struct ContentView: View {
     @State private var showingLoseAlert = false
     @State private var showingGameOverAlert = false
     
+    //a random integer to get a different image every play
+    @State var randomInt = 0
+    
     //countdown image changes as the time runs out
     var countdownButtonColor: Color {
         if timeRemaining >= 30 {
@@ -66,9 +69,6 @@ struct ContentView: View {
             return .green
         }
     }
-    
-    //generates a random integer to get a different image every play
-    let randomInt = Int.random(in: 1...30)
     
     var body: some View {
         GeometryReader { geometry in
@@ -128,6 +128,7 @@ struct ContentView: View {
                                 )
                             .onAppear {
                                 countdownAnimationAmount = 2.0
+                                randomInt = Int.random(in: 1...30)
                             }
                             .onReceive(timer) { _ in
                                 if timeRemaining > 0 {
@@ -154,7 +155,7 @@ struct ContentView: View {
         .alert("Time's up!", isPresented: $showingTimeoutAlert) {
             Button("Continue") { }
         } message: {
-            Text("It was a ...animal name here...")
+            Text("It was a \(imageArray[randomInt])")
         }
         
         .alert("Correct!", isPresented: $showingWinAlert) {
