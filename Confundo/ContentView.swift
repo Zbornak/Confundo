@@ -26,9 +26,9 @@ struct ContentView: View {
     var countdownButtonColor: Color {
         if timeRemaining >= 60 {
             return .green
-        } else if timeRemaining < 40 {
+        } else if timeRemaining <= 40 {
             return .yellow
-        } else if timeRemaining < 20 {
+        } else if timeRemaining <= 20 {
             return .red
         } else {
             return .green
@@ -38,7 +38,7 @@ struct ContentView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                LinearGradient(gradient: Gradient(colors: [.green, .white]), startPoint: .bottomLeading, endPoint: .topLeading)
+                LinearGradient(gradient: Gradient(colors: [.teal, .white]), startPoint: .bottomLeading, endPoint: .topLeading)
                     .ignoresSafeArea()
                 
                 VStack {
@@ -78,8 +78,8 @@ struct ContentView: View {
                         .padding()
                         .buttonStyle(.bordered)
                         .background(countdownButtonColor)
-                        .foregroundColor(.white)
                         .clipShape(Circle())
+                        .shadow(radius: 10)
                         .overlay(
                             Circle()
                                 .stroke(countdownButtonColor)
