@@ -17,6 +17,7 @@ struct ContentView: View {
     @State private var userScore = 0
     
     @State private var timeRemaining = 60
+    
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     @State private var averageTime = 0.0
