@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+//string extension to get the nth letter in a string
+extension String {
+    subscript(i: Int) -> String {
+        return String(self[index(startIndex, offsetBy: i)])
+    }
+}
+
 struct ContentView: View {
     
     //images to display and slowly unblur
