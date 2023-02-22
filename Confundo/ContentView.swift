@@ -28,6 +28,8 @@ struct ContentView: View {
     
     @State private var playCount = 0
     
+    @State private var showingTimeoutAlert = false
+    
     var countdownButtonColor: Color {
         if timeRemaining >= 30 {
             return .green
@@ -120,6 +122,9 @@ struct ContentView: View {
                 }
                 .padding()
             }
+        }
+        .alert("Time's up!", isPresented: $showingTimeoutAlert) {
+            Button("OK") { }
         }
     }
 }
