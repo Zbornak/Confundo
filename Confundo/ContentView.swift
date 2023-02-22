@@ -55,7 +55,7 @@ struct ContentView: View {
     @State private var showingGameOverAlert = false
     
     //a random integer to get a different image every play
-    @State var randomInt = 0
+    @State var randomInt: Int
     
     //countdown image changes as the time runs out
     var countdownButtonColor: Color {
@@ -128,7 +128,6 @@ struct ContentView: View {
                                 )
                             .onAppear {
                                 countdownAnimationAmount = 2.0
-                                randomInt = Int.random(in: 1...30)
                             }
                             .onReceive(timer) { _ in
                                 if timeRemaining > 0 {
@@ -176,6 +175,10 @@ struct ContentView: View {
         } message: {
             Text("Great game! Play again and try to get your average time up!")
         }
+    }
+    
+    init() {
+        randomInt = Int.random(in: 1...30)
     }
 }
 
