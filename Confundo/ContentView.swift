@@ -70,37 +70,39 @@ struct ContentView: View {
                         .fontWeight(.bold)
                         .padding(.top)
                     
-                    Picker("", selection: $selectedImage) {
-                        ForEach(imageArray, id: \.self) {
-                            Text($0)
+                    HStack {
+                        Picker("", selection: $selectedImage) {
+                            ForEach(imageArray, id: \.self) {
+                                Text($0)
+                            }
                         }
-                    }
-                    .pickerStyle(.wheel)
-                    
-                    Text("\(timeRemaining)")
-                        .fontWeight(.bold)
-                        .font(.system(size: 40))
-                        .padding()
-                        .frame(maxWidth: geometry.size.width * 0.8)
-                        .buttonStyle(.bordered)
-                        .background(countdownButtonColor)
-                        .clipShape(Circle())
-                        .shadow(radius: 10)
-                        .overlay(
-                            Circle()
-                                .stroke(countdownButtonColor)
-                                .scaleEffect(countdownAnimationAmount)
-                                .opacity(2 - countdownAnimationAmount)
-                                .animation(Animation.easeInOut(duration: 1.0).repeatForever(autoreverses: false), value: countdownAnimationAmount)
-                            )
-                        .onAppear {
-                            countdownAnimationAmount = 2.0
-                        }
-                        .onReceive(timer) { _ in
-                            if timeRemaining > 0 {
+                        .pickerStyle(.wheel)
+                        
+                        Text("\(timeRemaining)")
+                            .fontWeight(.bold)
+                            .font(.system(size: 40))
+                            .padding()
+                            .frame(maxWidth: geometry.size.width * 0.8)
+                            .buttonStyle(.bordered)
+                            .background(countdownButtonColor)
+                            .clipShape(Circle())
+                            .shadow(radius: 10)
+                            .overlay(
+                                Circle()
+                                    .stroke(countdownButtonColor)
+                                    .scaleEffect(countdownAnimationAmount)
+                                    .opacity(2 - countdownAnimationAmount)
+                                    .animation(Animation.easeInOut(duration: 1.0).repeatForever(autoreverses: false), value: countdownAnimationAmount)
+                                )
+                            .onAppear {
+                                countdownAnimationAmount = 2.0
+                            }
+                            .onReceive(timer) { _ in
+                                if timeRemaining > 0 {
                                 timeRemaining -= 1
                             }
                         }
+                    }
                     
                     Slider(value: $blurAmount)
                     
