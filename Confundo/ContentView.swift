@@ -16,8 +16,6 @@ struct ContentView: View {
     
     @State private var blurAmount = 0.0
     
-    @State private var blurCountdown = 60.0
-    
     @State private var userScore = 0
     
     @State private var timeRemaining = 60
@@ -64,7 +62,7 @@ struct ContentView: View {
                         .frame(maxWidth: geometry.size.width * 0.8)
                         .shadow(radius: 10)
                         .saturation(blurAmount)
-                        .blur(radius: (1 - blurAmount) * blurCountdown)
+                        .blur(radius: (1 - blurAmount) * 50)
                         .padding()
                     
                     Text("Guess the image as soon as you can!")
