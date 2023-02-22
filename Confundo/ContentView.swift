@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    let imageSet = Set(["bear", "buffalo", "chick", "chicken", "cow", "crocodile", "dog", "duck", "elephant", "frog", "giraffe", "goat", "gorilla", "hippo", "horse", "monkey", "moose", "narwhal", "owl", "panda", "parrot", "penguin", "pig", "rabbit", "rhino", "sloth", "snake", "walrus", "whale", "zebra"])
+    let imageArray = ["bear", "buffalo", "chick", "chicken", "cow", "crocodile", "dog", "duck", "elephant", "frog", "giraffe", "goat", "gorilla", "hippo", "horse", "monkey", "moose", "narwhal", "owl", "panda", "parrot", "penguin", "pig", "rabbit", "rhino", "sloth", "snake", "walrus", "whale", "zebra"]
     
     @State private var userGuess = ""
     
@@ -30,7 +30,7 @@ struct ContentView: View {
                     }
                     .padding(.bottom)
                     
-                    Image(imageSet.randomElement() ?? "dog")
+                    Image(imageArray[0])
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: geometry.size.width * 0.8)
