@@ -40,6 +40,8 @@ struct ContentView: View {
         }
     }
     
+    let randomInt = Int.random(in: 1...30)
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -56,7 +58,7 @@ struct ContentView: View {
                     .fontWeight(.bold)
                     .padding(.bottom)
                     
-                    Image(imageArray[0])
+                    Image(imageArray[randomInt])
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: geometry.size.width * 0.8)
