@@ -23,6 +23,8 @@ struct ContentView: View {
     
     @State private var countdownAnimationAmount = 1.0
     
+    @State private var playCount = 0
+    
     var countdownButtonColor: Color {
         if timeRemaining >= 60 {
             return .green
