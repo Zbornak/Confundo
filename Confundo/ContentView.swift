@@ -30,7 +30,7 @@ struct ContentView: View {
                     }
                     .padding(.bottom)
                     
-                    Image(imageArray[Int.random(in: 0...imageArray.count)])
+                    Image(imageArray[0])
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: geometry.size.width * 0.8)
