@@ -30,13 +30,13 @@ struct ContentView: View {
                     }
                     .padding(.bottom)
                     
-                    Image(imageArray[0])
+                    Image(imageArray[Int.random(in: 0...imageArray.count)])
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: geometry.size.width * 0.8)
                         .shadow(radius: 10)
                         .saturation(blurAmount)
-                        .blur(radius: (1 - blurAmount) * 40)
+                        .blur(radius: (1 - blurAmount) * 50)
                         .padding()
                     
                     Text("Guess the image as soon as you can!")
