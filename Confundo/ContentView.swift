@@ -41,8 +41,11 @@ struct ContentView: View {
     //how many rounds the player has completed (gets more difficult as player goes along)
     @State private var playCount = 0
     
-    //toggling the timeout message
+    //toggling the various user messages
     @State private var showingTimeoutAlert = false
+    @State private var showingWinAlert = false
+    @State private var showingLoseAlert = false
+    @State private var showingGameOverAlert = false
     
     //countdown image changes as the time runs out
     var countdownButtonColor: Color {
@@ -145,6 +148,25 @@ struct ContentView: View {
             Button("Continue") { }
         } message: {
             Text("It was a ...animal name here...")
+        }
+        
+        .alert("Correct!", isPresented: $showingWinAlert) {
+            Button("Continue") { }
+        } message: {
+            Text("It was a ...animal name here...")
+        }
+        
+        .alert("Oops, wrong!", isPresented: $showingLoseAlert) {
+            Button("Continue") { }
+        } message: {
+            Text("It was a ...animal name here...")
+        }
+        
+        .alert("Game Over!", isPresented: $showingGameOverAlert) {
+            Button("Finish") { }
+            Button("Play again") {}
+        } message: {
+            Text("Great game! Play again and try to get your average time up!")
         }
     }
 }
