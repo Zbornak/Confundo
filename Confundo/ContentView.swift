@@ -18,7 +18,7 @@ struct ContentView: View {
     
     @State private var userScore = 0
     
-    @State private var timeRemaining = 60
+    @State private var timeRemaining = 30
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -29,11 +29,11 @@ struct ContentView: View {
     @State private var playCount = 0
     
     var countdownButtonColor: Color {
-        if timeRemaining >= 60 {
+        if timeRemaining >= 30 {
             return .green
-        } else if timeRemaining <= 40 && timeRemaining > 20 {
+        } else if timeRemaining <= 20 && timeRemaining > 10 {
             return .yellow
-        } else if timeRemaining <= 20 {
+        } else if timeRemaining <= 10 {
             return .red
         } else {
             return .green
@@ -62,7 +62,9 @@ struct ContentView: View {
                         .frame(maxWidth: geometry.size.width * 0.8)
                         .shadow(radius: 10)
                         .saturation(blurAmount)
-                        .blur(radius: (1 - blurAmount) * 50)
+                        .blur(radius: (1 - blurAmount) * 20)
+                        .animation(Animation.linear(duration: 30), value: blurAmount)
+                        .onAppear { blurAmount = 1.0 }
                         .padding()
                     
                     Text("Guess the image as quick as you can!")
@@ -103,8 +105,6 @@ struct ContentView: View {
                             }
                         }
                     }
-                    
-                    Slider(value: $blurAmount)
                     
                     HStack {
                         Text("Average Time: \(averageTime)")
