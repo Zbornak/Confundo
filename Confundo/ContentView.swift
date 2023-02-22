@@ -16,6 +16,22 @@ struct ContentView: View {
     
     @State private var userScore = 0
     
+    @State private var countdown = 60
+    
+    @State private var averageTime = 0.0
+    
+    @State private var countdownAnimationAmount = 1.0
+    
+    var countdownButtonColor: Color {
+        if countdown >= 60 {
+            return .green
+        } else if countdown < 30 {
+            return .yellow
+        } else {
+            return .red
+        }
+    }
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -52,6 +68,28 @@ struct ContentView: View {
                     
                     Spacer()
                     
+                    Text("\(countdown)")
+                        
+                        .fontWeight(.bold)
+                        .font(.system(size: 40))
+                        .padding()
+                        .buttonStyle(.bordered)
+                        .background(countdownButtonColor)
+                        .foregroundColor(.white)
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle()
+                                .stroke(countdownButtonColor)
+                                .scaleEffect(countdownAnimationAmount)
+                                .opacity(2 - countdownAnimationAmount)
+                                .animation(Animation.easeInOut(duration: 1.0).repeatForever(autoreverses: false), value: countdownAnimationAmount)
+                            )
+                        .onAppear {
+                            countdownAnimationAmount = 2.0
+                        }
+                    
+                    Spacer()
+                    
                     Slider(value: $blurAmount)
                     
                     HStack {
@@ -59,7 +97,7 @@ struct ContentView: View {
                             .font(.title3)
                             .fontWeight(.bold)
                         Spacer()
-                        Text("Score:")
+                        Text("Score: \(userScore)")
                     }
                     .font(.title3)
                     .fontWeight(.bold)
