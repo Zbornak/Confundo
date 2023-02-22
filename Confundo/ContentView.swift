@@ -14,6 +14,8 @@ struct ContentView: View {
     
     @State private var blurAmount = 0.0
     
+    @State private var userScore = 0
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -21,13 +23,13 @@ struct ContentView: View {
                     .ignoresSafeArea()
                 
                 VStack {
-                    HStack {
-                        Image(systemName: "eyes")
-                            .font(.largeTitle)
+                    VStack {
                         Text("Confundo!")
                             .font(.largeTitle)
-                            .fontWeight(.bold)
+                        Text("コンファンド")
+                            .font(.title3)
                     }
+                    .fontWeight(.bold)
                     .padding(.bottom)
                     
                     Image(imageArray[0])
