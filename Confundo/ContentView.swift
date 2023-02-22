@@ -8,28 +8,43 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    //images to display and slowly unblur
     let imageArray = ["bear", "buffalo", "chick", "chicken", "cow", "crocodile", "dog", "duck", "elephant", "frog", "giraffe", "goat", "gorilla", "hippo", "horse", "monkey", "moose", "narwhal", "owl", "panda", "parrot", "penguin", "pig", "rabbit", "rhino", "sloth", "snake", "walrus", "whale", "zebra"]
     
+    //default image for the picker
     @State private var selectedImage = "duck"
     
+    //the guess the player gives
     @State private var userGuess = ""
     
+    //starting blur for the image animation
     @State private var blurAmount = 0.0
     
+    //player score
     @State private var userScore = 0
     
+    //how much time the player has to guess the animal
     @State private var timeRemaining = 30
     
+    //timer for the countdown
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
-    @State private var averageTime = 0.0
+    //the average time it takes for the user to correctly guess
+    var averageTime: Double {
+        return 0.0
+    }
     
+    //animation amount for the radiating circles around the countdown
     @State private var countdownAnimationAmount = 1.0
     
+    //how many rounds the player has completed (gets more difficult as player goes along)
     @State private var playCount = 0
     
+    //toggling the timeout message
     @State private var showingTimeoutAlert = false
     
+    //countdown image changes as the time runs out
     var countdownButtonColor: Color {
         if timeRemaining >= 30 {
             return .green
@@ -42,6 +57,7 @@ struct ContentView: View {
         }
     }
     
+    //generates a random integer to get a different image every play
     let randomInt = Int.random(in: 1...30)
     
     var body: some View {
