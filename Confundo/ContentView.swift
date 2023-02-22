@@ -10,9 +10,13 @@ import SwiftUI
 struct ContentView: View {
     let imageArray = ["bear", "buffalo", "chick", "chicken", "cow", "crocodile", "dog", "duck", "elephant", "frog", "giraffe", "goat", "gorilla", "hippo", "horse", "monkey", "moose", "narwhal", "owl", "panda", "parrot", "penguin", "pig", "rabbit", "rhino", "sloth", "snake", "walrus", "whale", "zebra"]
     
+    @State private var selectedImage = "duck"
+    
     @State private var userGuess = ""
     
     @State private var blurAmount = 0.0
+    
+    @State private var blurCountdown = 60.0
     
     @State private var userScore = 0
     
@@ -60,19 +64,19 @@ struct ContentView: View {
                         .frame(maxWidth: geometry.size.width * 0.8)
                         .shadow(radius: 10)
                         .saturation(blurAmount)
-                        .blur(radius: (1 - blurAmount) * 50)
+                        .blur(radius: (1 - blurAmount) * blurCountdown)
                         .padding()
                     
                     Text("Guess the image as soon as you can!")
                         .font(.title3)
                         .fontWeight(.bold)
                     
-                    TextField("Enter your guess here", text: $userGuess)
-                        .textFieldStyle(.roundedBorder)
-                        .shadow(radius: 10)
-                        .opacity(0.7)
-                    
-                    Spacer()
+                    Picker("", selection: $selectedImage) {
+                        ForEach(imageArray, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    .pickerStyle(.wheel)
                     
                     Text("\(timeRemaining)")
                         .fontWeight(.bold)
@@ -98,8 +102,6 @@ struct ContentView: View {
                                 timeRemaining -= 1
                             }
                         }
-                    
-                    Spacer()
                     
                     Slider(value: $blurAmount)
                     
