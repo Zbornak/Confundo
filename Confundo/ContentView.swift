@@ -65,9 +65,10 @@ struct ContentView: View {
                         .blur(radius: (1 - blurAmount) * 50)
                         .padding()
                     
-                    Text("Guess the image as soon as you can!")
+                    Text("Guess the image as quick as you can!")
                         .font(.title3)
                         .fontWeight(.bold)
+                        .padding(.top)
                     
                     Picker("", selection: $selectedImage) {
                         ForEach(imageArray, id: \.self) {
