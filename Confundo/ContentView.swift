@@ -62,7 +62,7 @@ struct ContentView: View {
                         .frame(maxWidth: geometry.size.width * 0.8)
                         .shadow(radius: 10)
                         .saturation(blurAmount)
-                        .blur(radius: (1 - blurAmount) * 20)
+                        .blur(radius: (1 - blurAmount) * 30)
                         .animation(Animation.linear(duration: 30), value: blurAmount)
                         .onAppear { blurAmount = 1.0 }
                         .padding()
