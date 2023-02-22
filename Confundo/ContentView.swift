@@ -171,7 +171,7 @@ struct ContentView: View {
         
         .alert("Game Over!", isPresented: $showingGameOverAlert) {
             Button("Finish") { }
-            Button("Play again") {}
+            Button("Play again") { }
         } message: {
             Text("Great game! Play again and try to get your average time up!")
         }
