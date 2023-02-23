@@ -86,21 +86,29 @@ struct ContentView: View {
                     .fontWeight(.bold)
                     .padding(.bottom)
                     
-                    Image(imageArray[randomInt])
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: geometry.size.width * 0.8)
-                        .shadow(radius: 10)
-                        .saturation(blurAmount)
-                        .blur(radius: (1 - blurAmount) * 30)
-                        .animation(Animation.linear(duration: 30), value: blurAmount)
-                        .onAppear { blurAmount = 1.0 }
-                        .padding()
-                    
-                    Text("Guess the image as quick as you can!")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .padding(.top)
+                    if !gameIsOver {
+                        Image(imageArray[randomInt])
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: geometry.size.width * 0.8)
+                            .shadow(radius: 10)
+                            .saturation(blurAmount)
+                            .blur(radius: (1 - blurAmount) * 30)
+                            .animation(Animation.linear(duration: 30), value: blurAmount)
+                            .onAppear { blurAmount = 1.0 }
+                            .padding()
+                        
+                        Text("Guess the image as quick as you can!")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .padding(.top)
+                    } else {
+                        Text("Thanks for playing!")
+                            .font(.title)
+                            .fontWeight(.bold)
+                        
+                        Spacer()
+                    }
                     
                     HStack {
                         Picker("", selection: $selectedImage) {
@@ -125,32 +133,44 @@ struct ContentView: View {
                         .shadow(radius: 10)
                         .padding()
                             
-                        Text("\(timeRemaining)")
-                            .fontWeight(.bold)
-                            .font(.system(size: 40))
-                            .padding()
-                            .frame(maxWidth: geometry.size.width * 0.8)
-                            .buttonStyle(.bordered)
-                            .background(countdownButtonColor)
-                            .clipShape(Circle())
-                            .shadow(radius: 10)
-                            .overlay(
-                                Circle()
-                                    .stroke(countdownButtonColor)
-                                    .scaleEffect(countdownAnimationAmount)
-                                    .opacity(2 - countdownAnimationAmount)
-                                    .animation(Animation.easeInOut(duration: 1.0).repeatForever(autoreverses: false), value: countdownAnimationAmount)
-                            )
-                            .onAppear {
-                                countdownAnimationAmount = 2.0
-                            }
-                            .onReceive(timer) { _ in
-                                if timeRemaining > 0 {
-                                    timeRemaining -= 1
-                                } else {
-                                    showingTimeoutAlert = true
+                        if !gameIsOver {
+                            Text("\(timeRemaining)")
+                                .fontWeight(.bold)
+                                .font(.system(size: 40))
+                                .padding()
+                                .frame(maxWidth: geometry.size.width * 0.8)
+                                .buttonStyle(.bordered)
+                                .background(countdownButtonColor)
+                                .clipShape(Circle())
+                                .shadow(radius: 10)
+                                .overlay(
+                                    Circle()
+                                        .stroke(countdownButtonColor)
+                                        .scaleEffect(countdownAnimationAmount)
+                                        .opacity(2 - countdownAnimationAmount)
+                                        .animation(Animation.easeInOut(duration: 1.0).repeatForever(autoreverses: false), value: countdownAnimationAmount)
+                                )
+                                .onAppear {
+                                    countdownAnimationAmount = 2.0
                                 }
-                            }
+                                .onReceive(timer) { _ in
+                                    if timeRemaining > 0 {
+                                        timeRemaining -= 1
+                                    } else {
+                                        showingTimeoutAlert = true
+                                    }
+                                }
+                        } else {
+                            Text("0")
+                                .fontWeight(.bold)
+                                .font(.system(size: 40))
+                                .padding()
+                                .frame(maxWidth: geometry.size.width * 0.8)
+                                .buttonStyle(.bordered)
+                                .background(.red)
+                                .clipShape(Circle())
+                                .shadow(radius: 10)
+                        }
                         }
                     }
                     
