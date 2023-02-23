@@ -118,6 +118,8 @@ struct ContentView: View {
                                 Text("\($0 + 1). AAA          ..........          976")
                                 }
                             }
+                        .scrollContentBackground(.hidden)
+                        .background(.teal)
                         
                         Spacer()
                     }
