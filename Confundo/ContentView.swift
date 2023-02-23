@@ -106,6 +106,24 @@ struct ContentView: View {
                         Text("Thanks for playing!")
                             .font(.title)
                             .fontWeight(.bold)
+                            .padding(.bottom)
+                        
+                        Text("High Scores:")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .padding(.bottom)
+                        
+                        HStack {
+                            HStack {
+                                Spacer()
+                                Text("AAA")
+                                Spacer()
+                                Text("............")
+                                Spacer()
+                                Text("976")
+                                Spacer()
+                            }
+                        }
                         
                         Spacer()
                     }
