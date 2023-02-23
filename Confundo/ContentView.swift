@@ -149,7 +149,7 @@ struct ContentView: View {
                                         .scaleEffect(countdownAnimationAmount)
                                         .opacity(2 - countdownAnimationAmount)
                                         .animation(Animation.easeInOut(duration: 1.0).repeatForever(autoreverses: false), value: countdownAnimationAmount)
-                                )
+                                    )
                                 .onAppear {
                                     countdownAnimationAmount = 2.0
                                 }
@@ -160,17 +160,17 @@ struct ContentView: View {
                                         showingTimeoutAlert = true
                                     }
                                 }
-                        } else {
-                            Text("0")
-                                .fontWeight(.bold)
-                                .font(.system(size: 40))
-                                .padding()
-                                .frame(maxWidth: geometry.size.width * 0.8)
-                                .buttonStyle(.bordered)
-                                .background(.red)
-                                .clipShape(Circle())
-                                .shadow(radius: 10)
-                        }
+                            } else {
+                                Text("0")
+                                    .fontWeight(.bold)
+                                    .font(.system(size: 40))
+                                    .padding()
+                                    .frame(maxWidth: geometry.size.width * 0.8)
+                                    .buttonStyle(.bordered)
+                                    .background(.green)
+                                    .clipShape(Circle())
+                                    .shadow(radius: 10)
+                            }
                         }
                     }
                     
