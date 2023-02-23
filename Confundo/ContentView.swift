@@ -35,8 +35,8 @@ struct ContentView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     //the average time it takes for the user to correctly guess
-    var averageTime: Double {
-        return 0.0
+    var averageTime: Int {
+        return 0
     }
     
     //animation amount for the radiating circles around the countdown
@@ -113,6 +113,14 @@ struct ContentView: View {
                         } label: {
                             Text("Guess!")
                         }
+                        .buttonStyle(.bordered)
+                        .foregroundColor(.black)
+                        .background(.orange)
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .clipShape(Capsule())
+                        .shadow(radius: 10)
+                        .padding()
                             
                         Text("\(timeRemaining)")
                             .fontWeight(.bold)
@@ -165,13 +173,13 @@ struct ContentView: View {
         .alert("Correct!", isPresented: $showingWinAlert) {
             Button("Continue") { }
         } message: {
-            Text("It was a ...animal name here...")
+            Text("It was a \(imageArray[randomInt])")
         }
         
         .alert("Oops, wrong!", isPresented: $showingLoseAlert) {
             Button("Continue") { }
         } message: {
-            Text("It was a ...animal name here...")
+            Text("It was a \(imageArray[randomInt])")
         }
         
         .alert("Game Over!", isPresented: $showingGameOverAlert) {
