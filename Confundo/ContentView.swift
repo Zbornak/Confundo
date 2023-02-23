@@ -165,25 +165,34 @@ struct ContentView: View {
             }
         }
         .alert("Time's up!", isPresented: $showingTimeoutAlert) {
-            Button("Continue") { }
+            Button("Continue") {
+                newRound()
+            }
         } message: {
             Text("It was a \(imageArray[randomInt])")
         }
         
         .alert("Correct!", isPresented: $showingWinAlert) {
-            Button("Continue") { }
+            Button("Continue") {
+                newRound()
+            }
         } message: {
             Text("It was a \(imageArray[randomInt])")
         }
         
         .alert("Oops, wrong!", isPresented: $showingLoseAlert) {
-            Button("Continue") { }
+            Button("Continue") {
+                newRound()
+            }
         } message: {
             Text("It was a \(imageArray[randomInt])")
         }
         
         .alert("Game Over!", isPresented: $showingGameOverAlert) {
-            Button("Finish") { }
+            Button("Finish") {
+                userScore = 0
+                newRound()
+            }
             Button("Play again") { }
         } message: {
             Text("Great game! Play again and try to get your average time up!")
@@ -201,6 +210,11 @@ struct ContentView: View {
         } else {
             showingLoseAlert = true
         }
+    }
+    
+    func newRound() {
+        randomInt = Int.random(in: 1..<30)
+        timeRemaining = 30
     }
 }
 
