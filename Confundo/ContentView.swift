@@ -120,6 +120,7 @@ struct ContentView: View {
                             }
                         .scrollContentBackground(.hidden)
                         .background(.teal)
+                        .shadow(radius: 20)
                         
                         Spacer()
                     }
