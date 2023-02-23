@@ -19,11 +19,8 @@ struct ContentView: View {
     //images to display and slowly unblur
     let imageArray = ["bear", "buffalo", "chick", "chicken", "cow", "crocodile", "dog", "duck", "elephant", "frog", "giraffe", "goat", "gorilla", "hippo", "horse", "monkey", "moose", "narwhal", "owl", "panda", "parrot", "penguin", "pig", "rabbit", "rhino", "sloth", "snake", "walrus", "whale", "zebra"]
     
-    //default image for the picker
+    //default image for the picker/player guess
     @State private var selectedImage = "duck"
-    
-    //the guess the player gives
-    @State private var userGuess = ""
     
     //starting blur for the image animation
     @State private var blurAmount = 0.0
@@ -179,6 +176,15 @@ struct ContentView: View {
     
     init() {
         randomInt = Int.random(in: 1...30)
+    }
+    
+    func gameCondition() {
+        if selectedImage == imageArray[randomInt] {
+            showingWinAlert = true
+            userScore += 1
+        } else {
+            showingLoseAlert = true
+        }
     }
 }
 
