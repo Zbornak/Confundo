@@ -113,17 +113,11 @@ struct ContentView: View {
                             .fontWeight(.bold)
                             .padding(.bottom)
                         
-                        HStack {
-                            HStack {
-                                Spacer()
-                                Text("AAA")
-                                Spacer()
-                                Text("............")
-                                Spacer()
-                                Text("976")
-                                Spacer()
+                        List {
+                            ForEach(0..<5) {
+                                Text("\($0 + 1). AAA          ..........          976")
+                                }
                             }
-                        }
                         
                         Spacer()
                     }
@@ -234,12 +228,11 @@ struct ContentView: View {
                gameIsOver = true
             }
             Button("Play again") {
-                //why doesn't this work??
                 userScore = 0
                 newRound()
             }
         } message: {
-            Text("Great game! Play again and try to get your average time up!")
+            Text("Great game! You scored \(userScore) out of 10. Play again and try to get your average time up!")
         }
     }
     
@@ -259,7 +252,7 @@ struct ContentView: View {
     }
     
     func newRound() {
-        if playCount == 10 {
+        if playCount <= 10 {
             randomInt = Int.random(in: 1..<30)
             timeRemaining = 30
         } else {
