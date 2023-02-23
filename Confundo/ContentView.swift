@@ -107,6 +107,13 @@ struct ContentView: View {
                         }
                         .pickerStyle(.wheel)
                         
+                    VStack {
+                        Button {
+                            gameCondition()
+                        } label: {
+                            Text("Guess!")
+                        }
+                            
                         Text("\(timeRemaining)")
                             .fontWeight(.bold)
                             .font(.system(size: 40))
@@ -122,15 +129,16 @@ struct ContentView: View {
                                     .scaleEffect(countdownAnimationAmount)
                                     .opacity(2 - countdownAnimationAmount)
                                     .animation(Animation.easeInOut(duration: 1.0).repeatForever(autoreverses: false), value: countdownAnimationAmount)
-                                )
+                            )
                             .onAppear {
                                 countdownAnimationAmount = 2.0
                             }
                             .onReceive(timer) { _ in
                                 if timeRemaining > 0 {
-                                timeRemaining -= 1
+                                    timeRemaining -= 1
                                 } else {
                                     showingTimeoutAlert = true
+                                }
                             }
                         }
                     }
@@ -175,7 +183,7 @@ struct ContentView: View {
     }
     
     init() {
-        randomInt = Int.random(in: 1...30)
+        randomInt = Int.random(in: 1..<30)
     }
     
     func gameCondition() {
