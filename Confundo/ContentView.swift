@@ -67,6 +67,9 @@ struct ContentView: View {
         }
     }
     
+    //controls when to display game over message
+    @State private var gameIsOver = false
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -190,10 +193,12 @@ struct ContentView: View {
         
         .alert("Game Over!", isPresented: $showingGameOverAlert) {
             Button("Finish") {
+               gameIsOver = true
+            }
+            Button("Play again") {
                 userScore = 0
                 newRound()
             }
-            Button("Play again") { }
         } message: {
             Text("Great game! Play again and try to get your average time up!")
         }
@@ -207,14 +212,21 @@ struct ContentView: View {
         if selectedImage == imageArray[randomInt] {
             showingWinAlert = true
             userScore += 1
+            playCount += 1
         } else {
             showingLoseAlert = true
+            playCount += 1
         }
     }
     
     func newRound() {
-        randomInt = Int.random(in: 1..<30)
-        timeRemaining = 30
+        if playCount == 10 {
+            randomInt = Int.random(in: 1..<30)
+            timeRemaining = 30
+        } else {
+            showingGameOverAlert = true
+            playCount = 0
+        }
     }
 }
 
