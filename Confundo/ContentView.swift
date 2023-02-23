@@ -216,6 +216,7 @@ struct ContentView: View {
                gameIsOver = true
             }
             Button("Play again") {
+                //why doesn't this work??
                 userScore = 0
                 newRound()
             }
