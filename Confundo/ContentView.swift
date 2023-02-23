@@ -187,7 +187,7 @@ struct ContentView: View {
                     }
                     
                     HStack {
-                        Text("Average Time: \(averageTime, specifier: "%.2f")")
+                        Text("Average Time: \(averageTime)")
                             .font(.title3)
                             .fontWeight(.bold)
                         Spacer()
