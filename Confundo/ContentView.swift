@@ -103,24 +103,12 @@ struct ContentView: View {
                             .fontWeight(.bold)
                             .padding(.top)
                     } else {
+                        Spacer()
+                        
                         Text("Thanks for playing!")
                             .font(.title)
                             .fontWeight(.bold)
                             .padding(.bottom)
-                        
-                        Text("High Scores:")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .padding(.bottom)
-                        
-                        List {
-                            ForEach(0..<5) {
-                                Text("\($0 + 1). AAA          ..........          976")
-                                }
-                            }
-                        .scrollContentBackground(.hidden)
-                        .background(.teal)
-                        .shadow(radius: 20)
                         
                         Spacer()
                     }
@@ -235,7 +223,7 @@ struct ContentView: View {
                 newRound()
             }
         } message: {
-            Text("Great game! You scored \(userScore) out of 10. Play again and try to get your average time up!")
+            Text("You scored \(userScore) out of 10. Play again and try to get your average time up!")
         }
     }
     
