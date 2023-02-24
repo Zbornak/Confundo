@@ -186,6 +186,8 @@ struct ContentView: View {
                         }
                     }
                     
+                    Spacer()
+                    
                     Text("Score: \(userScore)")
                             .font(.title3)
                             .fontWeight(.bold)
