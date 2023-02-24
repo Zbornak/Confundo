@@ -22,9 +22,6 @@ struct ContentView: View {
     //default image for the picker/player guess
     @State private var selectedImage = "duck"
     
-    //starting blur for the image animation
-    @State private var blurAmount = 0.0
-    
     //player score
     @State private var userScore = 0
     
@@ -70,6 +67,11 @@ struct ContentView: View {
     //controls when to display game over message
     @State private var gameIsOver = false
     
+    //countdown linked to blur animation
+    var blurAmount: Double {
+        1 - (Double(timeRemaining) / 30.0)
+    }
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -94,8 +96,6 @@ struct ContentView: View {
                             .shadow(radius: 10)
                             .saturation(blurAmount)
                             .blur(radius: (1 - blurAmount) * 30)
-                            .animation(Animation.linear(duration: 30), value: blurAmount)
-                            .onAppear { blurAmount = 1.0 }
                             .padding()
                         
                         Text("Guess the image as quick as you can!")
