@@ -91,10 +91,10 @@ struct ContentView: View {
                     VStack {
                         Text("Confundo!")
                             .font(.largeTitle)
-                        Text("コンファンド")
+                            .fontWeight(.bold)
+                        Text("コンファンドー")
                             .font(.title3)
                     }
-                    .fontWeight(.bold)
                     .padding(.bottom)
                     
                     if !gameIsOver {
