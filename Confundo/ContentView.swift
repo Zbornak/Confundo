@@ -217,7 +217,7 @@ struct ContentView: View {
                 newRound()
             }
         } message: {
-            Text("You scored \(userScore) out of 10. Play again and try to get your average time up!")
+            Text("You scored \(userScore) out of 10")
         }
     }
     
