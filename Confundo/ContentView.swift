@@ -72,6 +72,15 @@ struct ContentView: View {
         1 - (Double(timeRemaining) / 30.0)
     }
     
+    //function to see if the animal starts with a vowel (for the alert messages)
+    func vowelOrConsonant() -> String {
+        if imageArray[randomInt][0] == "a" || imageArray[randomInt][0] == "e" || imageArray[randomInt][0] == "i" || imageArray[randomInt][0] == "o" {
+            return "an"
+        } else {
+            return "a"
+        }
+    }
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -189,7 +198,7 @@ struct ContentView: View {
                 newRound()
             }
         } message: {
-            Text("It was a \(imageArray[randomInt])")
+            Text("It was \(vowelOrConsonant()) \(imageArray[randomInt])")
         }
         
         .alert("Correct!", isPresented: $showingWinAlert) {
@@ -197,7 +206,7 @@ struct ContentView: View {
                 newRound()
             }
         } message: {
-            Text("It was a \(imageArray[randomInt])")
+            Text("It was \(vowelOrConsonant()) \(imageArray[randomInt])")
         }
         
         .alert("Oops, wrong!", isPresented: $showingLoseAlert) {
@@ -205,7 +214,7 @@ struct ContentView: View {
                 newRound()
             }
         } message: {
-            Text("It was a \(imageArray[randomInt])")
+            Text("It was \(vowelOrConsonant()) \(imageArray[randomInt])")
         }
         
         .alert("Game Over!", isPresented: $showingGameOverAlert) {
