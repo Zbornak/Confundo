@@ -81,6 +81,8 @@ struct ContentView: View {
         }
     }
     
+    @State private var isTimerPaused = false
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -167,7 +169,9 @@ struct ContentView: View {
                                 }
                                 .onReceive(timer) { _ in
                                     if timeRemaining > 0 {
-                                        timeRemaining -= 1
+                                        if !isTimerPaused {
+                                            timeRemaining -= 1
+                                        }
                                     } else {
                                         showingTimeoutAlert = true
                                     }
@@ -241,9 +245,11 @@ struct ContentView: View {
             showingWinAlert = true
             userScore += 1
             playCount += 1
+            isTimerPaused = true
         } else {
             showingLoseAlert = true
             playCount += 1
+            isTimerPaused = true
         }
     }
     
@@ -251,9 +257,11 @@ struct ContentView: View {
         if playCount <= 10 {
             randomInt = Int.random(in: 1..<30)
             timeRemaining = 30
+            isTimerPaused = false
         } else {
             showingGameOverAlert = true
             playCount = 0
+            isTimerPaused = true
         }
     }
 }
