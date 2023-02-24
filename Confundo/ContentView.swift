@@ -177,15 +177,9 @@ struct ContentView: View {
                         }
                     }
                     
-                    HStack {
-                        Text("Average Time: \(averageTime)")
+                    Text("Score: \(userScore)")
                             .font(.title3)
                             .fontWeight(.bold)
-                        Spacer()
-                        Text("Score: \(userScore)")
-                    }
-                    .font(.title3)
-                    .fontWeight(.bold)
                 }
                 .padding()
             }
