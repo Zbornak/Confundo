@@ -121,6 +121,22 @@ struct ContentView: View {
                             .fontWeight(.bold)
                             .padding(.bottom)
                         
+                        Button {
+                            gameIsOver = false
+                            userScore = 0
+                            newRound()
+                        } label: {
+                            Text("Play again")
+                        }
+                        .buttonStyle(.bordered)
+                        .foregroundColor(.black)
+                        .background(.orange)
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .clipShape(Capsule())
+                        .shadow(radius: 10)
+                        .padding()
+                        
                         Spacer()
                     }
                     
